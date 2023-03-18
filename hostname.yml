@@ -1,0 +1,15 @@
+---
+
+- name: Change hostname to web.example.org
+  hosts: web
+  become: true
+
+  vars:
+    hostname: web.exmaple.org
+
+  tasks:
+      - name: Set hostname
+        hostname:
+          name: '{{ hostname }}'
+
+

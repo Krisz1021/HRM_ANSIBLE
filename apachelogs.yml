@@ -1,0 +1,26 @@
+---
+- name: Rotate Apache logs
+  hosts: web
+  become: true
+            
+  vars:
+    log_path: "/var/log/httpd/"
+    log_file: "access.log"
+    log_rotate_days: 7
+                                    
+  tasks:
+    - name: Create Apache log directory if not exists
+      file:                                                          
+        path: "{{ log_path }}"
+        state: directory
+
+    - name: Configure logrotate for Apache logs
+      template:
+        src: logrotate.j2
+        dest: /etc/logrotate.d/httpd
+        mode: 0644
+
+    - name: Restart Apache service
+      systemd:
+        name: httpd
+        state: restarted
