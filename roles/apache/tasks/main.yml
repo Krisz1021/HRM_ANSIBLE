@@ -1,0 +1,31 @@
+---
+# tasks file for apache
+
+- name: Install Apache web server
+  ansible.builtin.dnf:
+    name: httpd
+    state: latest
+  
+- name: Ensure httpd is started and enabled
+  ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: true
+
+- name: Create virtual host directory
+  file:
+    path: "{{ apache_directory }}"
+    state: directory
+    owner: apache    
+    group: apache
+    mode: '0755'
+    
+- name: vhost file is installed
+  ansible.builtin.template:
+    src: apache.conf.j2
+    dest: /etc/httpd/conf.d/{{ apache_name }}.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart httpd

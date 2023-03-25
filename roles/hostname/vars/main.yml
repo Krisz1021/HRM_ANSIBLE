@@ -1,0 +1,4 @@
+---
+# vars file for hostname
+
+hostname: web.exmaple.org

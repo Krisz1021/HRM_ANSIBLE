@@ -1,0 +1,9 @@
+# {{ ansible_managed }}
+
+<VirtualHost *:{{ apache_port }}>
+    ServerName {{ apache_name }}
+    DocumentRoot {{ apache_directory }}
+
+    ErrorLog {{ apache_log_directory }}/{{ apache_name }}.error.log
+    CustomLog {{ apache_log_directory }}/{{ apache_name }}.access.log combined
+</VirtualHost>

@@ -1,0 +1,8 @@
+---
+# vars file for apache
+
+apache_name: example.com
+apache_port: 8080
+apache_directory: /var/web
+apache_log_directory: /var/log/httpd
+

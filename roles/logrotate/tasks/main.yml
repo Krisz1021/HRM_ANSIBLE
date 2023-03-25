@@ -1,0 +1,15 @@
+---
+# tasks file for logrotate
+
+- name: Create Apache log directory if not exists
+  file:
+    path: "{{ log_path }}"
+    state: directory
+
+- name: Configure logrotate for Apache logs
+  template:
+    src: logrotate.j2
+    dest: /etc/logrotate.d/httpd
+    mode: 0644
+  notify:
+    - restart httpd

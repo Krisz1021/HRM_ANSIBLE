@@ -1,0 +1,6 @@
+---
+# vars file for logrotate
+
+log_path: "/var/log/httpd/"
+log_file: "access.log"
+log_rotate_days: 7

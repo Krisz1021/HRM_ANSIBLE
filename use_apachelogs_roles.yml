@@ -1,0 +1,15 @@
+---
+- name: Rotate Apache logs
+  hosts: web
+  pre_tasks:
+    - name: pre_tasks message
+      ansible.builtin.debug:
+        msg: 'Ensure logrotate configuration.'
+      
+  roles:  
+    - logrotate
+
+  post_tasks:
+    - name: post_tasks message
+      ansible.builtin.debug:
+        msg: 'Logrotate is configured.'
